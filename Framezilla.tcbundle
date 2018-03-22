@@ -1,0 +1,18 @@
+{
+  "description" : "Expanders for Framezilla https:\/\/github.com\/Otbivnoe\/Framezilla\n\nMade by [twitter] @iosartem",
+  "name" : "Framezilla",
+  "expanders" : [
+    {
+      "name" : "Configure frame",
+      "is_enabled" : true,
+      "description" : "> view.cf",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "${name:word}.cf",
+      "output_template" : "${name}.configureFrame { maker in\n\tmaker.#\n}",
+      "identifier" : ""
+    }
+  ],
+  "is_enabled" : true
+}

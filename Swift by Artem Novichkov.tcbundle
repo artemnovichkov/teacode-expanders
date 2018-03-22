@@ -1,0 +1,18 @@
+{
+  "description" : "Swift expanders\n\nMade by [twitter] @iosartem",
+  "name" : "Swift by Artem Novichkov",
+  "expanders" : [
+    {
+      "name" : "Add Target",
+      "is_enabled" : true,
+      "description" : "> button.at",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "${name:word}.at",
+      "output_template" : "${name}.addTarget(self, action: #selector(${name}Pressed), for: .touchUpInside)",
+      "identifier" : ""
+    }
+  ],
+  "is_enabled" : true
+}
