@@ -87,7 +87,7 @@
         "swift"
       ],
       "pattern" : "try ${operation:text}",
-      "output_template" : "do {\n\ttry ${operation}\n} catch {\n\t#\n}",
+      "output_template" : "do {\n\ttry ${operation}\n} \ncatch {\n\t#\n}",
       "identifier" : ""
     },
     {
