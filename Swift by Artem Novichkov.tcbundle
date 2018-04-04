@@ -10,7 +10,7 @@
         "swift"
       ],
       "pattern" : "${name:word}.at",
-      "output_template" : "${name}.addTarget(self, action: #selector(${name}Pressed), for: .touchUpInside)",
+      "output_template" : "${name}.addTarget(self, action: \\#selector(${name}Pressed), for: .touchUpInside)",
       "identifier" : ""
     }
   ],
