@@ -196,7 +196,7 @@
       "supported_languages" : [
         "swift"
       ],
-      "pattern" : "${scope:switch(+:public,-:private,o:open,f:final)}",
+      "pattern" : "${scope:switch(+:public,-:private,-s:private(set),o:open,f:final)}",
       "output_template" : "${scope} ",
       "identifier" : "scope"
     },
