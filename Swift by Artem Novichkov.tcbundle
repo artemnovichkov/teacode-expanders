@@ -12,6 +12,17 @@
       "pattern" : "${name:word}.at",
       "output_template" : "${name}.addTarget(self, action: \\#selector(${name}Pressed), for: .touchUpInside)",
       "identifier" : ""
+    },
+    {
+      "name" : "Constant",
+      "is_enabled" : true,
+      "description" : "> -const name",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "|${scope:exp(scope)}|const ${name:word}",
+      "output_template" : "|${scope}| enum Constants {\n    static let ${name} = #\n}",
+      "identifier" : ""
     }
   ],
   "is_enabled" : true
