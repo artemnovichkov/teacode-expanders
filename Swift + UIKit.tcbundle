@@ -31,7 +31,7 @@
       "supported_languages" : [
         "swift"
       ],
-      "pattern" : "v${sense:switch(w:Will,d:Did)}${appearance:switch(a:Appear,d:Dissapear)}",
+      "pattern" : "v${sense:switch(w:Will,d:Did)}${appearance:switch(a:Appear,d:Disappear)}",
       "output_template" : "override func view${sense}${appearance}(_ animated: Bool) {\n\tsuper.view${sense}${appearance}(animated)\n\t#\n}",
       "identifier" : ""
     },
