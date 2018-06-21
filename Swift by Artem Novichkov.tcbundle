@@ -21,9 +21,45 @@
         "swift"
       ],
       "pattern" : "|${scope:exp(scope)}|const ${name:word}",
-      "output_template" : "|${scope}| enum Constants {\n    static let ${name} = #\n}",
+      "output_template" : "|${scope}|enum Constants {\n    static let ${name} = #\n}",
+      "identifier" : ""
+    },
+    {
+      "name" : "Service",
+      "is_enabled" : true,
+      "description" : "Service dependency for service locator\n\n> s authorization",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "s ${name:word}",
+      "output_template" : "lazy var ${name.camelcase}Service: ${name.capitalize}ServiceProtocol = ${name.capitalize}Service()",
+      "identifier" : ""
+    },
+    {
+      "name" : "Layout",
+      "is_enabled" : true,
+      "description" : "Layout for views\n\n> view.layout\n> layout",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "|${name:word}.|layout",
+      "output_template" : "|${name}.|setNeedsLayout()\n|${name}.|layoutIfNeeded()",
+      "identifier" : ""
+    },
+    {
+      "name" : "Handler",
+      "is_enabled" : true,
+      "description" : "> cancel handler",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "${name:word} handler",
+      "output_template" : "var ${name}Handler: (() -> Void)?",
       "identifier" : ""
     }
+  ],
+  "supported_languages" : [
+    "any"
   ],
   "is_enabled" : true
 }

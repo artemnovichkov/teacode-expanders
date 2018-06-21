@@ -69,5 +69,8 @@
       "identifier" : ""
     }
   ],
+  "supported_languages" : [
+    "any"
+  ],
   "is_enabled" : true
 }
