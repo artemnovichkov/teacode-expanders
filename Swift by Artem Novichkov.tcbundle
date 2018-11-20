@@ -53,8 +53,41 @@
       "supported_languages" : [
         "swift"
       ],
-      "pattern" : "${name:word} handler",
-      "output_template" : "var ${name}Handler: (() -> Void)?",
+      "pattern" : "|${scope:exp(scope)}|${name:word} handler",
+      "output_template" : "|${scope}|var ${name}Handler: (() -> Void)?",
+      "identifier" : ""
+    },
+    {
+      "name" : "Constants",
+      "is_enabled" : true,
+      "description" : "Enum as a namespace for constants\n> const",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "|${scope:exp(scope)}|const",
+      "output_template" : "|${scope}| enum Constants {\n    static let #\n}",
+      "identifier" : ""
+    },
+    {
+      "name" : "Service",
+      "is_enabled" : true,
+      "description" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "pattern" : "${name:word} service",
+      "output_template" : "lazy var ${name.camelcase}Service: ${name.camelcase.capitalize}ServiceProtocol = ${name.camelcase.capitalize}Service()",
+      "identifier" : ""
+    },
+    {
+      "name" : "Warning and error",
+      "is_enabled" : true,
+      "description" : "Swift 4.2 warning and error diagnostic directives\n> w\n> e\n> w Remove before App Store Release",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "${directive:switch(w:warning,e:error)}| ${comment:text}|",
+      "output_template" : "\\#${directive}(\"|${comment}|#\")",
       "identifier" : ""
     }
   ],
