@@ -36,14 +36,14 @@
       "identifier" : ""
     },
     {
-      "name" : "UIView subclass",
+      "name" : "UI* subclass",
       "is_enabled" : true,
-      "description" : "Generates a subclass of a UIView class.\n\n> sub MyView: UIView",
+      "description" : "Generates a subclass of a UI* class.\n\n> sub MyView: UI\n> sub MyLabel: UILabel",
       "supported_languages" : [
         "swift"
       ],
-      "pattern" : "|${scope:exp(scope)}|sub ${name:word}: UIView",
-      "output_template" : "|${scope}|final class ${name}: UIView {\n\n\t\/\/ MARK: - Lifecycle\n\t\n\toverride init(frame: CGRect) {\n        super.init(frame: frame)\n        configure()\n    }\n    \n    required init?(coder aDecoder: NSCoder) {\n        super.init(coder: aDecoder)\n        configure()\n    }\n    \n    override func layoutSubviews() {\n        super.layoutSubviews()\n    }\n    \n    \/\/ MARK: - Private\n    \n    private func configure() {\n    \t#\n    }\n}",
+      "pattern" : "|${scope:exp(scope)}|sub ${name:word}: UI${class:word=View}",
+      "output_template" : "|${scope}|final class ${name}: UI${class} {\n\n\t\/\/ MARK: - Lifecycle\n\t\n\toverride init(frame: CGRect) {\n        super.init(frame: frame)\n        configure()\n    }\n    \n    required init?(coder aDecoder: NSCoder) {\n        super.init(coder: aDecoder)\n        configure()\n    }\n    \n    override func layoutSubviews() {\n        super.layoutSubviews()\n    }\n    \n    \/\/ MARK: - Private\n    \n    private func configure() {\n    \t#\n    }\n}",
       "identifier" : ""
     }
   ],
