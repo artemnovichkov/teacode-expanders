@@ -14,7 +14,7 @@
       "identifier" : ""
     },
     {
-      "name" : "Constant",
+      "name" : "Constants",
       "is_enabled" : true,
       "description" : "> -const name",
       "supported_languages" : [
@@ -58,22 +58,11 @@
       "identifier" : ""
     },
     {
-      "name" : "Constants",
-      "is_enabled" : true,
-      "description" : "Enum as a namespace for constants\n> const",
-      "supported_languages" : [
-        "swift"
-      ],
-      "pattern" : "|${scope:exp(scope)}|const",
-      "output_template" : "|${scope}| enum Constants {\n    static let #\n}",
-      "identifier" : ""
-    },
-    {
       "name" : "Service",
       "is_enabled" : true,
       "description" : "",
       "supported_languages" : [
-        "any"
+        "swift"
       ],
       "pattern" : "${name:word} service",
       "output_template" : "lazy var ${name.camelcase}Service: ${name.camelcase.capitalize}ServiceProtocol = ${name.camelcase.capitalize}Service()",
@@ -88,6 +77,17 @@
       ],
       "pattern" : "${directive:switch(w:warning,e:error)}| ${comment:text}|",
       "output_template" : "\\#${directive}(\"|${comment}|#\")",
+      "identifier" : ""
+    },
+    {
+      "name" : "Delegate",
+      "is_enabled" : true,
+      "description" : "> delegate",
+      "supported_languages" : [
+        "swift"
+      ],
+      "pattern" : "|${scope:exp(scope)}| delegate",
+      "output_template" : "${scope} protocol #Delegate: class {\n\n    func <#name#>(<#parameters#>)\n}",
       "identifier" : ""
     }
   ],
