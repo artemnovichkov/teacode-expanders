@@ -16,12 +16,12 @@
     {
       "name" : "Test function",
       "is_enabled" : true,
-      "description" : "> tf update",
+      "description" : "> testUpdate",
       "supported_languages" : [
         "swift"
       ],
-      "pattern" : "tf ${name:text}",
-      "output_template" : "func test${name.ucfirst}() {\n\t#\n}",
+      "pattern" : "test${name:text}",
+      "output_template" : "func test${name.ucfirst}() {\n    \/\/Given\n\t#\n\t\/\/When\n\t\n\t\/\/Then\n\t\n}",
       "identifier" : ""
     },
     {
