@@ -1,0 +1,142 @@
+{
+  "description" : "Expanders for Swift and UIKit.\n\nMade by [twitter] @iosartem",
+  "supported_languages" : [
+    "any"
+  ],
+  "expanders" : [
+    {
+      "description" : "Adds target\/action for `.touchUpInside` event\n\n> button.at",
+      "identifier" : "",
+      "pattern" : "${name:word}.at",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "${name}.addTarget(self, action: \\#selector(${name}Pressed), for: .touchUpInside)",
+      "is_enabled" : true,
+      "name" : "Add Target"
+    },
+    {
+      "description" : "Creates an enum with static constants\n\n> -const name",
+      "identifier" : "",
+      "pattern" : "|${scope:exp(scope)}|const ${name:word}",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "|${scope}|enum Constants {\n    static let ${name} = #\n}",
+      "is_enabled" : true,
+      "name" : "Constants"
+    },
+    {
+      "description" : "Adds force layout for views\n\n> view.layout\n> layout",
+      "identifier" : "",
+      "pattern" : "|${name:word}.|layout",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "|${name}.|setNeedsLayout()\n|${name}.|layoutIfNeeded()",
+      "is_enabled" : true,
+      "name" : "Layout"
+    },
+    {
+      "description" : "Creates a closure variable without parameters\n\n> cancel handler",
+      "identifier" : "",
+      "pattern" : "|${scope:exp(scope)}|${name:word} handler",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "|${scope}|var ${name}Handler: (() -> Void)?",
+      "is_enabled" : true,
+      "name" : "Handler"
+    },
+    {
+      "description" : "Swift 4.2 warning and error diagnostic directives\n> w\n> e\n> w Remove before App Store Release\n> e Wrong state detected",
+      "identifier" : "",
+      "pattern" : "${directive:switch(w:warning,e:error)}| ${comment:text}|",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "\\#${directive}(\"|${comment}|#\")",
+      "is_enabled" : true,
+      "name" : "Warning and error"
+    },
+    {
+      "description" : "> delegate",
+      "identifier" : "",
+      "pattern" : "|${scope:exp(scope)}| delegate",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "|${scope}| protocol #Delegate: class {\n\n    func <#name#>(<#parameters#>)\n}",
+      "is_enabled" : true,
+      "name" : "Delegate"
+    },
+    {
+      "description" : "Adds a tap gesture recognizer\n\n> tap",
+      "identifier" : "",
+      "pattern" : "${view:word}.tap",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "let tapGestureRecognizer = UITapGestureRecognizer(target: ${view}, action: \\#selector(tap))\n${view}.addGestureRecognizer(tapGestureRecognizer)",
+      "is_enabled" : true,
+      "name" : "Tap Gesture Recognizer"
+    },
+    {
+      "description" : "Adds lifecycle functions for `UIViewController`\n> vwa\n> vwd\n> vda\n> vdd",
+      "identifier" : "",
+      "pattern" : "v${sense:switch(w:Will,d:Did)}${appearance:switch(a:Appear,d:Disappear)}",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "override func view${sense}${appearance}(_ animated: Bool) {\n\tsuper.view${sense}${appearance}(animated)\n\t#\n}",
+      "is_enabled" : true,
+      "name" : "View Controller appearance"
+    },
+    {
+      "description" : "Adds constraints for subview\n> self.addSubview(subview)",
+      "identifier" : "",
+      "pattern" : "${superview:text}.addSubview(${view:text})",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "${superview}.addSubview(${view})\n${view}.translatesAutoresizingMaskIntoConstraints = false\nNSLayoutConstraint.activate([\n    ${view}.topAnchor.constraint(equalTo: ${superview.remove_spaces}.topAnchor),\n    ${view}.bottomAnchor.constraint(equalTo: ${superview.remove_spaces}.bottomAnchor),\n    ${view}.leadingAnchor.constraint(equalTo: ${superview.remove_spaces}.leadingAnchor),\n    ${view}.trailingAnchor.constraint(equalTo: ${superview.remove_spaces}.trailingAnchor),\n])",
+      "is_enabled" : true,
+      "name" : "Constraints"
+    },
+    {
+      "description" : "Creates a subclass of UI class\n> sub mainView: UIView",
+      "identifier" : "",
+      "pattern" : "|${scope:exp(scope)}|sub ${name:word}: UI${class:word=View}",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "|${scope}|final class ${name.ucfirst}: UI${class} {\n\n\t\/\/ MARK: - Lifecycle\n\t\n\toverride init(frame: CGRect) {\n        super.init(frame: frame)\n        self.configure()\n    }\n    \n    required init?(coder aDecoder: NSCoder) {\n        super.init(coder: aDecoder)\n        self.configure()\n    }\n    \n    \/\/ MARK: - Private\n    \n    private func configure() {\n    \t#\n    }\n}",
+      "is_enabled" : true,
+      "name" : "UI* subclass"
+    },
+    {
+      "description" : "",
+      "identifier" : "",
+      "pattern" : "act ${name:word}",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "@objc private func ${name}Pressed() {\n    #\n}",
+      "is_enabled" : true,
+      "name" : "Button Action"
+    },
+    {
+      "description" : "> vc main",
+      "identifier" : "",
+      "pattern" : "vc ${name:word}",
+      "supported_languages" : [
+        "swift"
+      ],
+      "output_template" : "import UIKit\n\nfinal class ${name.ucfirst}ViewController: UIViewController {\n\n    \/\/MARK: - Subviews\n\n    \/\/MARK: - Lifecycle\n\n    override func viewDidLoad() {\n        super.viewDidLoad()\n        #\n    }\n}",
+      "is_enabled" : true,
+      "name" : "View Controller"
+    }
+  ],
+  "is_enabled" : true,
+  "name" : "Expanders by Artem Novichkov"
+}
